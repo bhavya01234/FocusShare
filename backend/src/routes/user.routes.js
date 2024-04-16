@@ -5,9 +5,19 @@ import { changeCurrentPassword,
      refreshAccessToken,
       registerUser, 
      updateAccountDetails, 
+     createroom,
+     joinroom,
+     saveToDo,
+     getToDos,
+     deleteTask,
+     updateTask,
+     markTaskCompleted
        } from "../controllers/user.contoller.js";
-
+// import { verifyTaskIdExists } from "../middlewares/task.middleware.js";
+// import { verifyRoomIdExists } from "../middlewares/room.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
+// import { verifyROOM } from "../middlewares/room.middleware.js";
+
 // import {upload} from "../middlewares/multer.middleware.js"
 const  router = Router();
 
@@ -51,5 +61,37 @@ router.route("/update-account").patch(verifyJWT, updateAccountDetails)
 
 // router.route("cover-image").patch(verifyJWT, upload.single("coverImage"), updateUserCoverImage)
 
+
+
+router.route("/createroom").post(verifyJWT, createroom)
+
+router.route("/joinroom").post(verifyJWT, joinroom)
+
+
+
+
+
+router.route("/rooms-savetodo").post(saveToDo);
+
+router.route("/get-todos").post(getToDos);
+
+
+
+
+
+
+
+
+
+
+//past
+
+// router.post("/rooms/:roomId/savetodo", saveToDo);
+
+// router.delete("/rooms/:roomId/deletetask/:taskId", deleteTask);
+
+// router.put("/rooms/:roomId/updatetask/:taskId", updateTask);
+
+// router.put("/rooms/:roomId/tasks/:taskId/complete", markTaskCompleted);
 
 export default router;

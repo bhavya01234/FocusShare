@@ -21,8 +21,11 @@
 import Home from "./component/Home"
 import Login from "./component/Login"
 import Signup from "./component/Signup"
+import Room from "./component/Room";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
+import JoinRoom from "./component/Join"
+
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
           <Route path="/" element={<Login/>}/>
           <Route path="/signup" element={<Signup/>}/>
           <Route path="/home" element={<Home/>}/>
+          <Route path="/room" element={<Room/>}/>
+          <Route path="/joinroom" element={<JoinRoom/>}/>
         </Routes>
       </Router>
     </div>

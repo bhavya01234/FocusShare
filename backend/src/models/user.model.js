@@ -24,27 +24,27 @@ const userSchema = new Schema(
             trim: true, 
             index: true
         },
-        // avatar: {
-        //     type: String, // cloudinary url
-        //     required: true,
-        // },
-        // coverImage: {
-        //     type: String, // cloudinary url
-        // },
-        // watchHistory: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         ref: "Video"
-        //     }
-        // ],
+        
         password: {
             type: String,
             required: [true, 'Password is required']
         },
+        
         refreshToken: {
             type: String
-        }
+        },
 
+        isJoined: {
+            type: Boolean,
+            default: false,
+        },
+        socketID: {
+            type: String,
+        },
+        isPartyLeader: {
+            type: Boolean,
+            default: false
+        },
     },
     {
         timestamps: true

@@ -88,11 +88,30 @@ function Login() {
                 username,
                 password
             });
-
-            if (response.status !== 200) {
+            console.log(response.data)
+            
+            if (response.status == 201) {
+                console.log(response.data);
+                console.log("*******************************")
                 console.log(response.status); 
+                console.log(response.data.accessToken);
                 //201 user created (actual response status)
-                history("/home", { state: { id: email } });
+
+                // const accessToken = JSON.stringify(response.data.accessToken);
+                // localStorage.setItem('token', accessToken);
+
+            //     const accessToken = response.headers['authorization']; // Extract access token from headers
+            //     const refr = response.headers['authorization'];
+            // console.log("Access token:", accessToken); // Log the access token
+      
+            // if (accessToken) {
+            //     localStorage.setItem('token', accessToken); // Store the access token
+            //     history("/home", { state: { id: email } });
+            // } else {
+            //     console.log("Access token not found in response headers");
+            //     // Handle error appropriately, maybe redirect or show an error message
+            // }
+                history("/");
             } else {
                 console.log(response.status);
                 alert("User already exists");
@@ -106,6 +125,7 @@ function Login() {
                 alert("An error occurred. Please try again later.");
             }
         }
+        
     }
 
     return (
