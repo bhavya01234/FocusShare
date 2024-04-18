@@ -91,10 +91,11 @@ function Login() {
     return (
         <>
             <div className="h-screen w-full bg-gradient-to-r from-pink-200 to-purple-900 via-purple-700 flex">
-                <div className="m-20 w-full bg-white/30 rounded-xl flex justify-between items-center px-20">
+                <div className="m-20 w-full bg-white/30 rounded-xl flex justify-between items-center px-20 gap-32">
                     <div className="flex flex-col gap-4">
                         <div className="text-5xl text-purple-900 tracking-tighter font-bold">Focus Share ...</div>
                         <img src={student} className="rounded-full" />
+                        <p className="text-center">Foster your connections with friends as you navigate your academic journey together.</p>
                     </div>
                     <div className="mr-12">
                         <div className="p-4 rounded-xl text-white flex items-center justify-center flex-col gap-4">
