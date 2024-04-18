@@ -103,15 +103,15 @@ function Login() {
                             <form action="POST" className="flex flex-col gap-6">
                                 <div className="flex flex-col gap-2">
                                     <h3 className="font-semibold text-base">Enter Username</h3>
-                                    <input className="w-72 h-8 rounded-md" type="text" onChange={(e) => { setUsername(e.target.value) }} placeholder="UserName" />
+                                    <input className="w-72 h-8 rounded-md text-purple-900" type="text" onChange={(e) => { setUsername(e.target.value) }} placeholder="UserName" />
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <h3 className="font-semibold text-base">Enter Email Address</h3>
-                                    <input className="w-72 h-8 rounded-md" type="text" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" />
+                                    <input className="w-72 h-8 rounded-md text-purple-900" type="text" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" />
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <h3 className="font-semibold text-base">Enter Password</h3>
-                                    <input className="w-72 h-8 rounded-md" type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" />
+                                    <input className="w-72 h-8 rounded-md text-purple-900" type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" />
                                 </div>
                             </form>
                             <input className="p-2 items-center w-20 bg-pink-400 text-white rounded-lg hover:bg-pink-200 hover:text-purple-900 shadow-lg" type="submit" onClick={submit} value="Login" />
