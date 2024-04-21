@@ -1,6 +1,8 @@
 import mongoose, {Schema} from "mongoose"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
+import {Todo} from "./todo.model.js"
+import {Room} from "./room.model.js"
 const userSchema = new Schema(
     {
         username: {
@@ -44,6 +46,17 @@ const userSchema = new Schema(
         isPartyLeader: {
             type: Boolean,
             default: false
+        },
+        // todo: [{
+        //     type: mongoose.Schema.Types.ObjectId, 
+        //     ref: "Todo" 
+        // }],
+
+
+        // Map of room IDs and their corresponding todo arrays
+        roomTodos: {
+            type: Map,
+            of: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todo" }]
         },
     },
     {

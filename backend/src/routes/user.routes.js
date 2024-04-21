@@ -11,7 +11,8 @@ import { changeCurrentPassword,
      getToDos,
      deleteTask,
      updateTask,
-     markTaskCompleted
+     getUsersInRoom,
+     markTask
        } from "../controllers/user.contoller.js";
 // import { verifyTaskIdExists } from "../middlewares/task.middleware.js";
 // import { verifyRoomIdExists } from "../middlewares/room.middleware.js";
@@ -71,17 +72,19 @@ router.route("/joinroom").post(verifyJWT, joinroom)
 
 
 
-router.route("/rooms-savetodo").post(saveToDo);
+router.route("/rooms-savetodo").post(verifyJWT, saveToDo);
 
-router.route("/get-todos").post(getToDos);
+router.route("/get-todos").post(verifyJWT, getToDos);
 
+router.route("/rooms-updatetodo").put(updateTask);
 
-
-
-
-
+router.route("/rooms-deletetodo").delete(deleteTask);
 
 
+
+router.route("/get-users").post(verifyJWT, getUsersInRoom);
+
+router.route("/rooms-marktask").put(verifyJWT, markTask);
 
 
 //past
