@@ -51,13 +51,25 @@ const userSchema = new Schema(
         //     type: mongoose.Schema.Types.ObjectId, 
         //     ref: "Todo" 
         // }],
+        roomIdOfUser: [{
+            type: mongoose.Schema.Types.ObjectId, 
+            ref: "Room"
+        }],
 
+        todos: [{
+            id: { type: mongoose.Schema.Types.ObjectId, ref: "Todo"},
+            roomId: { type: mongoose.Schema.Types.ObjectId, ref: "Room"},
+            title: { type: String},
+            description: { type: String},
+            status: { type: String, enum: ["pending", "completed"], default: "pending" }
+        }],
 
         // Map of room IDs and their corresponding todo arrays
         roomTodos: {
             type: Map,
             of: [{ type: mongoose.Schema.Types.ObjectId, ref: "Todo" }]
         },
+        
     },
     {
         timestamps: true

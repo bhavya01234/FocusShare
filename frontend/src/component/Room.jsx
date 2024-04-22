@@ -165,7 +165,9 @@ console.log("********************************************************");
 
             const roomIdfromls = localStorage.getItem('roomIdls');
             console.log(roomIdfromls, todoIdd, updatedTitle, updatedDescription);
-            
+            const token = localStorage.getItem('token'); // Assuming you're storing the JWT token in local storage
+                console.log("token is thereee to update task ... :   ", token);
+                
              const response = await axios.put("http://localhost:8001/users/rooms-updatetodo", {
              roomIdfromls,
              todoIdd,
@@ -173,7 +175,15 @@ console.log("********************************************************");
             //  description
             title: updatedTitle,
             description: updatedDescription
-            });
+            },
+            {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            }
+          }
+            );
 
             console.log(title);
             console.log(description);
@@ -257,27 +267,54 @@ console.log("********************************************************");
 
 
 
+
+
+
+<h1>Users</h1>
+<ul>
+  {users.map(user => (
+    <li key={user.id}>
+      <strong>Username:</strong> {user.username}
+      <ul>
+        {user.todos && user.todos.map(todo => (
+          <li key={todo.id}>
+            <strong>Title:</strong> {todo.title}
+            <br />
+            <strong>Description:</strong> {todo.description}
+            <br />
+            <strong>Status:</strong> {todo.status}
+            <button onClick={() => markTask(user.id, todo.id)}>Mark Done</button>
+          </li>
+        ))}
+      </ul>
+    </li>
+  ))}
+</ul>
+
+
+
+
+
+
+
+{/* 
  <h1>Users</h1>
 <ul>
   {users.map(user => (
     <li key={user.id}>
       <strong>Username:</strong> {user.username}
-      {/* <strong>Email:</strong> {user.email} */}
-      {/* <strong>Room Todos:</strong> */}
+      
       <ul>
         {Object.entries(user.roomTodos).map(([roomId, todoList]) => (
           <li key={roomId}>
-            {/* <strong>Room ID:</strong> {roomId} */}
+           
             <ul>
               {todoList.map(todo => (
                 <li key={todo.id}>
                   <strong>Title:</strong> {todo.title}
                   <br />
-                  {/* <strong>Description:</strong> {todo.description} */}
                   <br />
                   <strong>Status:</strong> {todo.status}
-                  
-                  {/* <button onClick={() => markTask(todo.id)}>Mark Done</button> */}
                    <button onClick={() => markTask(user.id,todo.id)}>Mark Done</button>
                 </li>
               ))}
@@ -287,37 +324,7 @@ console.log("********************************************************");
       </ul>
     </li>
   ))}
-</ul>
-
-{/* 
-<h1>Users</h1>
-<ul>
-  {users.map(user => (
-    <li key={user.id}>
-      <strong>Username:</strong> {user.username}
-     
-      <strong>Room Todos:</strong>
-      <ul>
-        {user.roomTodos ? (
-          Object.entries(user.roomTodos).map(([roomId, todoList]) => (
-            <li key={roomId}>
-              <strong>Room ID:</strong> {roomId}
-              <ul>
-                {todoList.map(todoId => (
-                  <li key={todoId}>{todoId.status}</li>
-                ))}
-              </ul>
-            </li>
-          ))
-        ) : (
-          <li>No room todos</li>
-        )}
-      </ul>
-    </li>
-  ))}
 </ul> */}
-
-
 
         </div>
     );

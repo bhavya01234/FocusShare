@@ -12,7 +12,8 @@ import { changeCurrentPassword,
      deleteTask,
      updateTask,
      getUsersInRoom,
-     markTask
+     markTaskDummyMe,
+     getUsersInRoomDummy
        } from "../controllers/user.contoller.js";
 // import { verifyTaskIdExists } from "../middlewares/task.middleware.js";
 // import { verifyRoomIdExists } from "../middlewares/room.middleware.js";
@@ -23,20 +24,6 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 const  router = Router();
 
 router.route("/register").post(
-    //adding middleware right before route (meet middleware just before reaching route)
-    // fields -> since we require multiple fields . it accepts array
-    // upload.fields([
-    //     //avatar
-    //     {
-    //         name: "avatar",   // give same name in frontend also 
-    //         maxCount: 1
-    //     },
-    //     // cover image
-    //     {
-    //         name: "coverImage",
-    //         maxCount: 1
-    //     }
-    // ]),
     registerUser
     )
 router.route("/login").post(loginUser)
@@ -76,15 +63,16 @@ router.route("/rooms-savetodo").post(verifyJWT, saveToDo);
 
 router.route("/get-todos").post(verifyJWT, getToDos);
 
-router.route("/rooms-updatetodo").put(updateTask);
+router.route("/rooms-updatetodo").put(verifyJWT, updateTask);
 
 router.route("/rooms-deletetodo").delete(deleteTask);
 
 
 
-router.route("/get-users").post(verifyJWT, getUsersInRoom);
 
-router.route("/rooms-marktask").put(verifyJWT, markTask);
+router.route("/get-users").post(verifyJWT, getUsersInRoomDummy);
+
+router.route("/rooms-marktask").put(verifyJWT, markTaskDummyMe);
 
 
 //past
