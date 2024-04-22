@@ -241,7 +241,7 @@ function Home() {
                 </div>
                 <div data-scroll data-scroll-section data-scroll-speed=".2" >
                     <div className="w-full h-36 bg-zinc-800 text-white flex items-center justify-center">
-                        <Link to="/join" className="bg-pink-400 border-pink-400 border-2 text-purple-900 w-36 py-3 text-center flex justify-center rounded-full hover:bg-purple-900 hover:text-white">Join Room</Link>
+                        <Link to="/joinroom" className="font-semibold bg-pink-400 border-pink-400 border-2 text-purple-900 w-36 py-3 text-center flex justify-center rounded-full hover:bg-purple-900 hover:text-white">Join Room</Link>
                     </div>
                 </div>
             </div>
