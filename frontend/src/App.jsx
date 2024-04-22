@@ -4,9 +4,12 @@ import Signup from "./component/Signup"
 import Room from "./component/Room";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import JoinRoom from "./component/Join"
+import locomotive from 'locomotive-scroll'
+import LocomotiveScroll from 'locomotive-scroll'
 
 
 function App() {
+  const loco = new LocomotiveScroll();
   return (
     <div className="App">
       <Router>
