@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root{
+    --primary : #294669;
+    --secondary : #cddef2;
+}
