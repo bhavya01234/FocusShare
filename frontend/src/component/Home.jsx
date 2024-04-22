@@ -187,19 +187,19 @@ function Home() {
                             <div className="w-full h-[0.5px] rounded-full bg-white"></div>
                             <div className="text-2xl text-white tracking-tighter">Empower your study sessions: Join or create rooms to collaborate with friends and track each other's progress effortlessly.</div>
                             <div className="flex items-center justify-center gap-10 mt-10">
-                                <div className="w-full h-36 bg-white/70 text-purple-800 relative justify-between rounded-2xl p-4 border-pink-300 border-2 text-center flex flex-col items-center">
+                                <div style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${study3})`}} className="font-semibold w-full h-36 text-purple-800 relative justify-between rounded-2xl p-4 border-pink-300 border-2 text-center flex flex-col items-center">
                                     <div>
                                         <MdOutlineUpload className="w-10 h-10 absolute top-4 left-1/2 -translate-x-1/2" />
                                     </div>
                                     Upload assignments and do your to-do lists.
                                 </div>
-                                <div className="w-full h-36 bg-purple-800 text-white relative justify-between rounded-2xl p-4 border-pink-300 border-2 text-center flex flex-col items-center">
+                                <div className="font-semibold w-full h-36 bg-purple-800 text-white relative justify-between rounded-2xl p-4 border-pink-300 border-2 text-center flex flex-col items-center">
                                     <div>
                                         <MdOutlineAssignment className="w-10 h-10 absolute top-4 left-1/2 -translate-x-1/2" />
                                     </div>
                                     See each other's progress with respect to the assignments.
                                 </div>
-                                <div className="w-full h-36 bg-white/70 text-purple-800 relative justify-between rounded-2xl p-4 border-pink-300 border-2 text-center flex flex-col items-center">
+                                <div style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url(${study4})`}} className="font-semibold w-full h-36 text-purple-800 relative justify-between rounded-2xl p-4 border-pink-300 border-2 text-center flex flex-col items-center">
                                     <div>
                                         <MdOutlineMarkUnreadChatAlt className="w-10 h-10 absolute top-4 left-1/2 -translate-x-1/2" />
                                     </div>
@@ -209,7 +209,7 @@ function Home() {
                             </div>
                             <div className="text-2xl mt-10 text-purple-900">Success is a journey best traveled together. Join our group path.</div>
                         </div>
-                        <div className="w-1/4 h-full mt-10 -mr-16 flex items-center justify-center">
+                        <div className="w-1/4 h-full mt-24 -mr-16 flex items-center justify-center">
                             {/* <div className="overflow-hidden relative h-screen w-full bg-gradient-to-b from-pink-200 to-purple-900 via-purple-700 flex items-center justify-center">
             <img src={study} className="rounded-full absolute -left-10 -bottom-10 w-[400px] h-[400px] opacity-80 z-0"></img>
             <img src={study2} className="rounded-full absolute -right-10 -bottom-10 w-[400px] h-[400px] opacity-80 z-0"></img> */}
@@ -230,31 +230,13 @@ function Home() {
                                 </div>
                                 <button className="bg-purple-900 hover:text-purple-900 text-white hover:bg-pink-200 p-3 rounded-full border-2 border-pink-400" onClick={handleCreateRoom}>Create Room</button>
                             </div>
-                            {/* <div className="p-10 w-[300px] h-[400px] bg-white/30 rounded-lg flex flex-col justify-center items-center gap-10">
-                    <h2 className="text-purple-900 tracking-tighter text-5xl font-bold">Join Room</h2>
-                    <div className="flex flex-col gap-2">
-                        <div className="text-white text-xl">Enter Room ID</div>
-                        <input className="rounded-md text-purple-900" type="text" placeholder="Room Id" onChange={(e) => { setRoomId(e.target.value) }}/>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="text-white text-xl">Enter Room Name</div>
-                        <input className="rounded-md text-purple-900" type="text" placeholder="Room Name" onChange={(e) => { setRoomName(e.target.value) }}/>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <div className="text-white text-xl">Enter your Name</div>
-                        <input className="rounded-md text-purple-900" type="text" placeholder="Name" onChange={(e) => { setParticipant(e.target.value) }}/>
-                    </div>
-                    <button className="bg-pink-400 hover:text-purple-900 text-white hover:bg-pink-200 p-3 rounded-md" onClick={handleCreateRoom}>Join Room</button>
-                </div> */}
-                            {/* </div> */}
                         </div>
-                        {/* </div> */}
                     </div>
                 </div>
                 <div className="flex gap-6 my-10 items-center justify-center">
                     {/* <div className="border-white border-2 rounded-full h-[1px]"></div> */}
                     <div className="text-white text-base">Swipe to join room</div>
-                    <FaArrowDown className="animate-bounce text-white" />
+                    <FaArrowDown className="animate-bounce text-white rounded-full border-[1px] border-white w-8 h-8 p-2" />
                     {/* <div className="border-white border-2 rounded-full h-[1px]"></div> */}
                 </div>
                 <div data-scroll data-scroll-section data-scroll-speed=".2" >
