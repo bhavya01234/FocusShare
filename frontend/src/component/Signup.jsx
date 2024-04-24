@@ -70,7 +70,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import student from '../images/student.avif'
 
 function Login() {
     const history = useNavigate();
@@ -130,45 +129,18 @@ function Login() {
     }
 
     return (
-        <>
-        <div className="h-screen w-full bg-gradient-to-r from-pink-200 to-purple-900 via-purple-700 flex">
-            <div className="m-20 w-full bg-white/30 rounded-xl flex justify-between items-center px-20 gap-32">
-                <div className="flex flex-col gap-4">
-                    <div className="text-5xl text-purple-900 tracking-tighter font-bold">Focus Share ...</div>
-                    <img src={student} className="rounded-full" />
-                    <p className="text-center">Foster your connections with friends as you navigate your academic journey together.</p>
-                </div>
-                <div className="mr-12">
-                    <div className="p-4 rounded-xl text-white flex items-center justify-center flex-col gap-4">
-                        <h1 className="text-3xl font-bold text-purple-900">Signup</h1>
-                        <form action="POST" className="flex flex-col gap-6">
-                            <div className="flex flex-col gap-2">
-                                <h3 className="font-semibold text-base">Enter your Full Name</h3>
-                                <input className="w-72 h-8 rounded-md text-purple-900" type="text" onChange={(e) => setFullName(e.target.value)} placeholder="Name" />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="font-semibold text-base">Enter Email Address</h3>
-                                <input className="w-72 h-8 rounded-md text-purple-900" type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="font-semibold">Enter Username</h3>
-                                <input className="w-72 h-8 rounded-md text-purple-900" type="text" onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <h3 className="font-semibold text-base">Enter Password</h3>
-                                <input className="w-72 h-8 rounded-md text-purple-900" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
-                            </div>
-                        </form>
-                        <input className="p-2 items-center w-20 bg-pink-400 text-white rounded-lg hover:bg-pink-200 hover:text-purple-900 shadow-lg" type="submit" onClick={submit} value="SignUp" />
-                        <p>OR</p>
-                        <Link to="/" className="underline text-xl text-purple-900 font-semibold">Login</Link>
-                    </div>
-
-                </div>
-            </div>
-
+        <div className="container">
+            <h1 className="heading">Signup Page</h1>
+            <form>
+                <input type="text" onChange={(e) => setFullName(e.target.value)} placeholder="Full Name" />
+                <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
+                <input type="text" onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+                <input type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+                <input type="submit" onClick={submit} className="submitbtn" value="Sign Up" />
+            </form>
+            <p>OR</p>
+            <Link to="/" className="link">Login Page</Link>
         </div>
-    </>
     );
 }
 

@@ -1,8 +1,13 @@
 import React, { useState, useEffect  } from "react";
 import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+
+
+import { useNavigate, Link } from "react-router-dom"
 
 function Room() {
+
+    const history=useNavigate();
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
 
@@ -293,10 +298,11 @@ console.log("********************************************************");
 
 
 
+<Link to="/chatroom" className="link">Chat Room</Link>
 
 
-
-
+{/* 
+ iterating through map */}
 {/* 
  <h1>Users</h1>
 <ul>

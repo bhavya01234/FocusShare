@@ -539,13 +539,6 @@ const saveToDo = asyncHandler(async (req, res) => {
         // Update the todo array in the roomTodos map
         user.roomTodos.set(roomIdfromls, todoArray);
 
-
-
-
-
-
-
-
         // appending in user todo object
 
          user.todos.push({
@@ -569,6 +562,8 @@ const saveToDo = asyncHandler(async (req, res) => {
         return res.status(500).json({ error: "Something went wrong while saving ToDo item" });
     }
 });
+
+
 
 const getToDos = asyncHandler(async (req, res) => {
     try {
@@ -597,7 +592,7 @@ const roomId = new mongoose.Types.ObjectId(roomIdfromlsget);
             {
                 $group: {
                     _id: "$_id", // Group by room id
-                    // todos: { $push: "$todoDetails.title" } // Push todo titles into an array
+                   
                     todos: { 
                         $push: { 
                             id: "$todoDetails._id",
@@ -647,7 +642,16 @@ const deleteTask = asyncHandler( async (req, res) => {
             return res.status(404).json({ error: "Room not found" });
         }
 
-        // Delete the task from the Todo collection
+       const userUpdate = await User.updateMany(
+            { "todos.roomId": roomIdfromls, "todos.id": todoIdd },
+            { $pull: { todos: { id: todoIdd } } }
+        );
+
+if (userUpdate.nModified === 0) {
+            return res.status(404).json({ error: "Todo not found in any user's todos" });
+        }
+
+
         await Todo.findByIdAndDelete(todoIdd);
 
         return res.status(200).json({ message: "Task deleted successfully" });
@@ -692,21 +696,18 @@ const updateTask = asyncHandler( async (req, res) => {
             task.description = description;
         }
 
-        // Save the updated task
         await task.save();
 
-        const user = await User.findById(userIdd);
+        await User.updateMany(
+            { "todos.roomId": roomIdfromls, "todos.id": todoIdd },
+            {
+                $set: {
+                    "todos.$.title": title,
+                    "todos.$.description": description || ""
+                }
+            }
+        );
 
-        if(!user){
-            throw new ApiError(404, "user not found to update task")
-        }
-
-        // Find the todo object in the user's todos array and update its title and description
-        const todoIndex = user.todos.findIndex(todo => todo.id === todoIdd);
-        if (todoIndex !== -1) {
-            user.todos[todoIndex].title = title;
-            user.todos[todoIndex].description = description || user.todos[todoIndex].description;
-        }
 
         return res.status(200).json({ message: "Task updated successfully", task });
     } catch (error) {
@@ -1004,9 +1005,9 @@ const getUsersInRoomDummy = asyncHandler(async (req, res) => {
             throw new ApiError(404, "Room not found or empty");
         }
 
-        for (const user of room[0].users) {
-            console.log(user);
-        }
+        // for (const user of room[0].users) {
+        //     console.log(user);
+        // }
        
         res.status(200).json(room[0].users);
     } catch (error) {
@@ -1020,82 +1021,82 @@ const getUsersInRoomDummy = asyncHandler(async (req, res) => {
 
 
 
-const getUsersInRoom = asyncHandler(async (req, res) => {
-    try {
-        const { roomIdfromlsget } = req.body;
-        const userId = req.user._id;  //from auth middleware
+// const getUsersInRoom = asyncHandler(async (req, res) => {
+//     try {
+//         const { roomIdfromlsget } = req.body;
+//         const userId = req.user._id;  //from auth middleware
     
-        console.log(userId);
-        console.log("this is user id");
+//         console.log(userId);
+//         console.log("this is user id");
 
 
-        if (!roomIdfromlsget || roomIdfromlsget.trim() === "") {
-            return res.status(400).json({ error: "roomid is required to fetch users in that room" });
-        }
+//         if (!roomIdfromlsget || roomIdfromlsget.trim() === "") {
+//             return res.status(400).json({ error: "roomid is required to fetch users in that room" });
+//         }
 
-        console.log('linelineline88888899999******************&&&&&&&&&&&');
-        const roomId = new mongoose.Types.ObjectId(roomIdfromlsget);
+//         console.log('linelineline88888899999******************&&&&&&&&&&&');
+//         const roomId = new mongoose.Types.ObjectId(roomIdfromlsget);
 
-        console.log("Converted room ID:", roomId);
+//         console.log("Converted room ID:", roomId);
 
-        const room = await Room.aggregate([
-            { $match: { _id: roomId  } },
-            { $unwind: "$players" }, // Unwind the players array
-            {
-                $lookup: {
-                    from: "users", // Collection to perform the lookup
-                    localField: "players", // Field from the current collection
-                    foreignField: "_id", // Field from the foreign collection
-                    as: "userDetails" // Output array field
-                }
-            },
-            { $unwind: "$userDetails" }, // Unwind the result of the lookup
-            {
-                $group: {
-                    _id: "$_id", // Group by room id
-                    users: { 
-                        $push: { 
-                            id: "$userDetails._id",
-                            username: "$userDetails.username", 
-                            email: "$userDetails.email" ,
-                            roomTodos: "$userDetails.roomTodos"
-                        } 
-                    }
-                }
-            }
-        ]);
+//         const room = await Room.aggregate([
+//             { $match: { _id: roomId  } },
+//             { $unwind: "$players" }, // Unwind the players array
+//             {
+//                 $lookup: {
+//                     from: "users", // Collection to perform the lookup
+//                     localField: "players", // Field from the current collection
+//                     foreignField: "_id", // Field from the foreign collection
+//                     as: "userDetails" // Output array field
+//                 }
+//             },
+//             { $unwind: "$userDetails" }, // Unwind the result of the lookup
+//             {
+//                 $group: {
+//                     _id: "$_id", // Group by room id
+//                     users: { 
+//                         $push: { 
+//                             id: "$userDetails._id",
+//                             username: "$userDetails.username", 
+//                             email: "$userDetails.email" ,
+//                             roomTodos: "$userDetails.roomTodos"
+//                         } 
+//                     }
+//                 }
+//             }
+//         ]);
 
        
-        if (!room || room.length === 0) {
-            throw new ApiError(404, "Room not found or empty");
-        }
+//         if (!room || room.length === 0) {
+//             throw new ApiError(404, "Room not found or empty");
+//         }
 
-        /////////////////////////////////////////////////////////////////////
+//         /////////////////////////////////////////////////////////////////////
 
-for (const user of room[0].users) {
-    for (const [roomId, todoList] of Object.entries(user.roomTodos)) {
-        if (roomId.toString() === roomIdfromlsget) { // Add this condition
-            const todoDetails = await Todo.find({ _id: { $in: todoList } });
-            const todosWithStatus = todoDetails.map(todo => ({
-                id: todo._id,
-                title: todo.title,
-                description: todo.description,
-                status: todo.status
-            }));
-            user.roomTodos[roomId] = todosWithStatus;
-        } else {
-            // Filter out todos for rooms other than the current roomId
-            delete user.roomTodos[roomId];
-        }
-    }
-}
+// for (const user of room[0].users) {
+//     for (const [roomId, todoList] of Object.entries(user.roomTodos)) {
+//         if (roomId.toString() === roomIdfromlsget) { // Add this condition
+//             const todoDetails = await Todo.find({ _id: { $in: todoList } });
+//             const todosWithStatus = todoDetails.map(todo => ({
+//                 id: todo._id,
+//                 title: todo.title,
+//                 description: todo.description,
+//                 status: todo.status
+//             }));
+//             user.roomTodos[roomId] = todosWithStatus;
+//         } else {
+//             // Filter out todos for rooms other than the current roomId
+//             delete user.roomTodos[roomId];
+//         }
+//     }
+// }
 
-        res.status(200).json(room[0].users);
-    } catch (error) {
-        console.error("Error fetching users in the room >3:", error);
-        res.status(500).json({ error: "Something went wrong while fetching users in the room" });
-    }
-});
+//         res.status(200).json(room[0].users);
+//     } catch (error) {
+//         console.error("Error fetching users in the room >3:", error);
+//         res.status(500).json({ error: "Something went wrong while fetching users in the room" });
+//     }
+// });
 
 
 
@@ -1115,6 +1116,5 @@ export {
      updateTask,
      markTaskDummyMe,
      getToDos,
-     getUsersInRoom,
      getUsersInRoomDummy
     }
