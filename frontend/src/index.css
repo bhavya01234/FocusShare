@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root{
+    --light : #FEF2E3;
+    --medium : #D2BCA1;
+    --dark : #6E6151;
+}
+
+body{
+    /* overflow: hidden; */
+}
+.text-shadow{
+    text-shadow: 2px 2px 5px black;
+}
+
+.transitions:hover{
+    transition: all;
+    transition-duration: 300;
+    transition-property: all;
+}
+
+table{
+
+    @apply border-2 border-t-[--light] border-l-[--light] 
+}
+table th{
+    @apply border-2 border-t-[--light] border-l-[--light] p-2
+}
+table td{
+    @apply border-2 border-t-[--light] border-l-[--light] p-2 
+}
