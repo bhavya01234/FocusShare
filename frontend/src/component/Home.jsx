@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 // import "./Home.css"
+import booksimage from '../images/booksimage.jpg'
 function Home (){
 
    const history=useNavigate();
@@ -163,42 +164,27 @@ function Home (){
   
 
     return (
-        <div className="homepage">
-
-            <div className="columns">
-                {/* <div className="column">
-                    <h3>Join Room</h3>
-                    
-                    <input
-                        type="text"
-                        placeholder="Room Id"
-                        onChange={(e) => { setRoomId(e.target.value) }}
-                    />
-                    <button onClick={handleJoinRoom}>Join Room</button>
-                </div> */}
-                <div className="column">
-                    <h3>Create Room</h3>
-                    <input
-                        type="text"
-                        placeholder="Room Id"
-                        onChange={(e) => { setRoomId(e.target.value) }}
-                    />
-                    <input
-                        type="text"
-                        placeholder="Room Name"
-                        onChange={(e) => { setRoomName(e.target.value) }}
-                    />
-                    <input
-                        type="number"
-                        placeholder="Occupancy"
-                        onChange={(e) => { setOccupancy(e.target.value) }}
-                    />
-                    <button onClick={handleCreateRoom}>Create Room</button>
+        <div className="w-full h-screen bg-contain bg-[--medium] flex items-center flex-col" style={{backgroundImage:`url(${booksimage})`}}>
+                <div className="w-full h-16 flex justify-between px-10 items-center bg-[--light]">
+                    <div className="font-bold text-xl text-[--dark]">Focus Share</div>
+                    <Link to='/joinroom' className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[--medium] hover:text-[--dark]">Join Room</Link>
+                </div>
+                <div className="rounded-2xl mt-24 bg-[--light] border-2 border-[--dark] shadow-[--dark] shadow-lg p-6 flex flex-col gap-3 items-center justify-center">
+                    <div className="mb-4">
+                                <label htmlFor="roomid" className="text-[--dark] text-2xl font-semibold">Set Room ID</label>
+                                <input value={roomid} onChange={(e)=>{setRoomId(e.target.value)}} type="number" id="roomid" className="mt-1 block w-72 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" placeholder="Room ID" />
+                            </div>
+                    <div className="mb-4">
+                                <label htmlFor="roomname" className="text-[--dark] text-2xl font-semibold">Set Room Name</label>
+                                <input value={roomname} onChange={(e)=>{setRoomName(e.target.value)}} type="text" id="roomname" className="mt-1 block w-72 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" placeholder="Room Name" />
+                            </div>
+                    <div className="mb-4">
+                                <label htmlFor="occupancy" className="text-[--dark] text-2xl font-semibold">Set Occupancy</label>
+                                <input value={occupancy} onChange={(e)=>{setOccupancy(e.target.value)}} type="number" id="occupancy" className="mt-1 block w-72 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" placeholder="Occupancy" />
+                            </div>
+                    <div onClick={handleCreateRoom} className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[--medium] hover:text-[--dark]">Create Room</div>
                 </div>
             </div>
-            {/* <Link to="/joinroom" className="link">Join Room</Link> */}
-
-        </div>
     )
 }
 
