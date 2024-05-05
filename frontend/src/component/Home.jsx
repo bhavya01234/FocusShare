@@ -186,6 +186,21 @@ function Home (){
                             </div>
                     <div onClick={handleCreateRoom} className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[--medium] hover:text-[--dark]">Create Room</div>
                 </div>
+                <div className="rounded-2xl mt-24 bg-[--light] border-2 border-[--dark] shadow-[--dark] shadow-lg p-6 flex flex-col gap-3 items-center justify-center">
+                    <div className="mb-4">
+                                <label htmlFor="roomid" className="text-[--dark] text-2xl font-semibold">Set Room ID</label>
+                                <input value={roomid} onChange={(e)=>{setRoomId(e.target.value)}} type="number" id="roomid" className="mt-1 block w-72 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" placeholder="Room ID" />
+                            </div>
+                    <div className="mb-4">
+                                <label htmlFor="roomname" className="text-[--dark] text-2xl font-semibold">Set Room Name</label>
+                                <input value={roomname} onChange={(e)=>{setRoomName(e.target.value)}} type="text" id="roomname" className="mt-1 block w-72 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" placeholder="Room Name" />
+                            </div>
+                    <div className="mb-4">
+                                <label htmlFor="occupancy" className="text-[--dark] text-2xl font-semibold">Set Occupancy</label>
+                                <input value={occupancy} onChange={(e)=>{setOccupancy(e.target.value)}} type="number" id="occupancy" className="mt-1 block w-72 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm" placeholder="Occupancy" />
+                            </div>
+                    <div onClick={handleCreateRoom} className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[--medium] hover:text-[--dark]">Create Room</div>
+                </div>
                  <Link 
             to="/" style={{
         position: "absolute",
