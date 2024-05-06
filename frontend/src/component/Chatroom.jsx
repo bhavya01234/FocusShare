@@ -7,6 +7,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 
 import abstract from '../images/abstract.jpeg'
+import chatbg from '../images/chatbg.jpg'
 const Chatroom = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -115,8 +116,8 @@ const Chatroom = () => {
     };
 
     return (
-         <div className="w-full h-screen bg-[--medium] bg-cover flex items-center flex-col" style={{backgroundImage:`url(${abstract})`}}>
-             <div className='fixed top-0 w-full h-16 bg-[--light] flex justify-between items-center px-6 text-[--dark] text-3xl'>
+        <div className="w-full max-h-screen overflow-hidden flex items-center flex-col">
+            <div className='fixed top-0 w-full h-16 bg-[--dark] flex justify-between items-center px-6 text-[--light] text-3xl'>
                 <Link to="/room" className='text-[--dark]'><IoArrowBackOutline /></Link>
                 <div className='flex justify-center items-center'>
                     Chat Room
@@ -125,31 +126,33 @@ const Chatroom = () => {
                 <div></div> {/* Placeholder for spacing */}
             </div>
             {/* <Link to="/room" className='fixed top-0 w-full h-16 bg-[--light] flex items-center px-6 text-[--dark] text-3xl'><IoArrowBackOutline /></Link> */}
-            <div className="my-16 min-h-screen gap-5 flex flex-col p-10 overflow-y-scroll w-full">
-                {messages.map((msg, index) => {
-                    const sender = users.find(x => x.id === msg.senderId);
-                    const isCurrentUser = userid === sender.id;
-                    const messageClass = isCurrentUser ? 'justify-end' : 'justify-start';
+            <div className="absolute mt-16 w-full h-[700px] -z-10 overflow-y-scroll" style={{ backgroundImage: `url(${chatbg})` }}>
+                <div className="gap-5 flex flex-col p-10 w-full" >
+                    {messages.map((msg, index) => {
+                        const sender = users.find(x => x.id === msg.senderId);
+                        const isCurrentUser = userid === sender.id;
+                        const messageClass = isCurrentUser ? 'justify-end' : 'justify-start';
 
-                    return (
-                        <div key={index} className={`flex ${messageClass}`}>
-                            <div className="border-2 border-[--light] p-3 max-w-[50%] w-fit break-all text-lg bg-[--medium] text-[--dark] rounded-2xl flex gap-2 flex-col">
-                                <div className="text-sm font-bold text-black capitalize">{sender.username}</div>
-                                <div>{msg.message}</div>
+                        return (
+                            <div key={index} className={`flex ${messageClass}`}>
+                                <div className="border-2 border-[--light] p-3 max-w-[50%] w-fit break-all text-lg bg-[--medium] text-[--dark] rounded-2xl flex gap-2 flex-col">
+                                    <div className="text-sm font-bold text-black capitalize">{sender.username}</div>
+                                    <div>{msg.message}</div>
+                                </div>
                             </div>
-                        </div>  
-                    );
-                })}
+                        );
+                    })}
+                </div>
+
             </div>
-            
-            <div className="fixed bottom-0 w-full p-3 bg-[--medium] flex justify-center gap-10">
+            <div className="fixed bottom-0 w-full p-3 bg-[--dark] flex justify-center gap-10">
                 <input
                     type="text"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     className="rounded-xl w-96 border-2 border-[--dark]"
                 />
-                <button onClick={sendMessage} className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[#584e41] active:bg-[#494136]">Send</button>
+                <button onClick={sendMessage} className="font-bold px-6 py-2 text-[--light] border-[1px] bg-[#64584a] rounded-md hover:bg-[#584e41] active:bg-[#494136]">Send</button>
             </div>
         </div>
         // <div>
