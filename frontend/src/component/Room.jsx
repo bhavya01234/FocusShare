@@ -367,9 +367,10 @@
 // export default Room;
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {MdComputer, MdOutlineUpdate, MdDone, MdOutlinePending, MdDownloadDone, MdDeleteOutline, MdExitToApp } from "react-icons/md";
+import { MdComputer, MdOutlineUpdate, MdDone, MdOutlinePending, MdDownloadDone, MdDeleteOutline, MdExitToApp } from "react-icons/md";
 import { AiOutlineMessage } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import logo from '../images/logo.png'
 
 function Room() {
     const [title, setTitle] = useState("");
@@ -394,13 +395,13 @@ function Room() {
                 const response = await axios.post("http://localhost:8001/users/get-todos", {
                     roomIdfromlsget
                 },
-                {
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                    {
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
                 setTodos(response.data);
             } catch (error) {
                 console.error("Error fetching todos:", error);
@@ -417,13 +418,13 @@ function Room() {
                 const response = await axios.post("http://localhost:8001/users/get-users", {
                     roomIdfromlsget
                 },
-                {
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`
-                    }
-                });
+                    {
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
                 setUsers(response.data);
             } catch (error) {
                 console.error("Error fetching users:", error);
@@ -446,13 +447,13 @@ function Room() {
                 description,
                 roomIdfromls
             },
-            {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                }
-            });
+                {
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
+                });
             console.log("Task saved successfully:", response.data);
         } catch (error) {
             console.error("Error saving task:", error);
@@ -483,13 +484,13 @@ function Room() {
                 title: updatedTitle,
                 description: updatedDescription
             },
-            {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                }
-            });
+                {
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
+                });
             console.log("Task updated successfully:", response.data);
         } catch (error) {
             console.error("Error updating task:", error);
@@ -505,13 +506,13 @@ function Room() {
                 roomIdfromls,
                 todoIdd
             },
-            {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
-                }
-            });
+                {
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
+                });
             console.log("Task updated successfully:", response.data);
         } catch (error) {
             console.error("Error marking task:", error);
@@ -584,7 +585,7 @@ function Room() {
     return (
         <div className="min-h-screen h-full w-full bg-[--medium] text-[--dark]">
             <div className="w-full h-16 flex justify-between px-10 items-center bg-[--light]">
-                <div className="font-bold text-xl text-[--dark]">Focus Share</div>
+                <img src={logo} />
                 <div className="flex gap-2">
                     <Link to='/home' className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[--medium] hover:text-[--dark]">Create Room</Link>
                     <Link to='/joinroom' className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[--medium] hover:text-[--dark]">Join Room</Link>
@@ -650,8 +651,8 @@ function Room() {
                     </tbody>
                 </table>
             </div>
-            <Link 
-                to="/" 
+            <Link
+                to="/"
                 className="absolute m-3 rounded-full w-20 text-[--light] bg-[--dark] h-16 bottom-0 left-5 hover:bg-[#584e41] active:bg-[#494136] flex justify-center items-center text-3xl"
                 style={{
                     boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.3), -3px -3px 5px rgba(255, 255, 255, 0.3)" // Pop-out effect
@@ -659,8 +660,8 @@ function Room() {
             >
                 <MdExitToApp />
             </Link>
-            <Link 
-                to="/bot" 
+            <Link
+                to="/bot"
                 className="absolute m-3 rounded-full w-20 text-[--light] bg-[--dark] h-20 bottom-24 right-5 hover:bg-[#584e41] active:bg-[#494136] flex justify-center items-center text-3xl"
                 style={{
                     boxShadow: "3px 3px 60px rgba(700, 100, 1600, 3), -3px -3px 5px rgba(155, 205, 855, 0.3)" // Pop-out effect
@@ -668,14 +669,14 @@ function Room() {
             >
                 <MdComputer />
             </Link>
-            <Link 
-                to="/chatroom" 
+            <Link
+                to="/chatroom"
                 className="absolute m-3 rounded-full w-20 text-[--light] bg-[--dark] h-16 bottom-0 right-5 hover:bg-[#584e41] active:bg-[#494136] flex justify-center items-center text-3xl"
                 style={{
                     boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.3), -3px -3px 5px rgba(255, 255, 255, 0.3)" // Pop-out effect
                 }}
             >
-                <AiOutlineMessage/>
+                <AiOutlineMessage />
             </Link>
         </div>
     );
