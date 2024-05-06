@@ -129,7 +129,7 @@ const Chatroom = () => {
                 <div></div> {/* Placeholder for spacing */}
             </div>
             {/* <Link to="/room" className='fixed top-0 w-full h-16 bg-[--light] flex items-center px-6 text-[--dark] text-3xl'><IoArrowBackOutline /></Link> */}
-            <div className="absolute mt-16 w-full h-[700px] -z-10 overflow-y-scroll" style={{ backgroundImage: `url(${chatbg})` }}>
+            <div className="absolute mt-16 w-full h-[700px] -z-10 overflow-y-scroll flex flex-col-reverse" style={{ backgroundImage: `url(${chatbg})` }}>
                 <div className="gap-5 flex flex-col p-10 w-full" >
                     {messages.map((msg, index) => {
                         const sender = users.find(x => x.id === msg.senderId);
