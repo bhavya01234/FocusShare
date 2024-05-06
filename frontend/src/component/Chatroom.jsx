@@ -8,6 +8,7 @@ import axios from 'axios';
 
 import abstract from '../images/abstract.jpeg'
 import chatbg from '../images/chatbg.jpg'
+import logo from '../images/logo.png'
 const Chatroom = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
@@ -118,7 +119,9 @@ const Chatroom = () => {
     return (
         <div className="w-full max-h-screen overflow-hidden flex items-center flex-col">
             <div className='fixed top-0 w-full h-16 bg-[--dark] flex justify-between items-center px-6 text-[--light] text-3xl'>
-                <Link to="/room" className='text-[--dark]'><IoArrowBackOutline /></Link>
+                {/* <img src={logo} className="bg-[--medium] rounded-lg h-12 p-2"/> */}
+
+                <Link to="/room"><IoArrowBackOutline className="text-[--light]"/></Link>
                 <div className='flex justify-center items-center'>
                     Chat Room
                     <span className='ml-4 text-[--medium]'>Stay anonymous</span>
