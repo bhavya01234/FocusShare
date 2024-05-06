@@ -26,7 +26,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from 'react';
 import JoinRoom from "./component/Join"
 import Chatroom from "./component/Chatroom";
-
+import Bot from "./component/Bot";
 
 function App() {
   return (
@@ -39,6 +39,7 @@ function App() {
           <Route path="/room" element={<Room/>}/>
           <Route path="/joinroom" element={<JoinRoom/>}/>
           <Route path="/chatroom" element={<Chatroom/>}/>
+          <Route path="/bot" element={<Bot/>}/>
         </Routes>
       </Router>
     </div>

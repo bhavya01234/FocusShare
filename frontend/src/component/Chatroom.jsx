@@ -137,10 +137,11 @@ const Chatroom = () => {
                                 <div className="text-sm font-bold text-black capitalize">{sender.username}</div>
                                 <div>{msg.message}</div>
                             </div>
-                        </div>
+                        </div>  
                     );
                 })}
             </div>
+            
             <div className="fixed bottom-0 w-full p-3 bg-[--medium] flex justify-center gap-10">
                 <input
                     type="text"

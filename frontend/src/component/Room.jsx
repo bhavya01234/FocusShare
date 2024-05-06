@@ -7,6 +7,7 @@ import { MdDownloadDone } from "react-icons/md";
 import { MdDeleteOutline } from "react-icons/md";
 import { AiOutlineMessage } from "react-icons/ai";
 import { MdExitToApp } from "react-icons/md";
+import { MdComputer } from 'react-icons/md';
 
 import { useNavigate, Link, useLocation } from "react-router-dom"
 
@@ -275,28 +276,28 @@ function Room() {
                         <form onSubmit={saveTask} className="flex flex-col gap-8">
                             <div className="text-5xl font-bold text-center text-white text-shadow">Create new Goals</div>
                             <div className="flex flex-col gap-2">
-                                <label className="text-xl font-bold">Enter Title:</label>
+                                <label className="text-xl font-bold">Enter Objectives:</label>
                                 <input className="border-[--dark] border-2 mt-1 block w-full px-3 py-2 bg-white rounded-md shadow-sm" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                             </div>
                             <div className="flex flex-col gap-2">
-                                <label className="text-xl font-bold">Enter Description:</label>
+                                <label className="text-xl font-bold">Challenge:</label>
                                 <textarea className="w-full h-40 mt-1 px-3 py-2 bg-white border-[--dark] border-2 rounded-md shadow-sm" value={description} onChange={(e) => setDescription(e.target.value)} ></textarea>
                             </div>
                             {saved && <div className="text-green-600 text-xl -mt-6">
                                 Task saved successfully!
                             </div>}
-                            <button type="submit" className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[#584e41] active:bg-[#494136]">Save Task</button>
+                            <button type="submit" className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[#584e41] active:bg-[#494136]">Launch</button>
                         </form>
                     </div>
                 </div>
 
                 <table className="w-[75%] p-2 text-center">
                     <thead className="bg-[--dark] text-[--light]">
-                        <th>To-do <br></br>Title</th>
-                        <th className="w-40">To-do<br></br> Description</th>
+                        <th>Objective <br></br>Title</th>
+                        <th className="w-40">Challenge<br></br> Description</th>
                         <th>Mark <br></br>as Done/<br></br>Pending</th>
-                        <th>Update<br></br> todo</th>
-                        <th>Delete<br></br> todo</th>
+                        <th>Update<br></br> Activity</th>
+                        <th>Delete<br></br> Mission</th>
                         {users.map((user) => (
                             <th key={user.id}>{user.username}</th>
                         ))}
@@ -306,7 +307,7 @@ function Room() {
                             <tr key={todo.id}>
                                 <td>{todo.title}</td>
                                 <td className="w-60 break-all">{todo.description}</td>
-                                <td key={todo.id} onClick={() => markTask(userid, todo.id)} className="hover:bg-[#bdab94] active:bg-[#9a8b79] cursor-pointer">Mark</td>
+                                <td key={todo.id} onClick={() => markTask(userid, todo.id)} className="hover:bg-[#bdab94] active:bg-[#9a8b79] cursor-pointer"><div className="flex justify-center"><MdDownloadDone /></div></td>
                                 <td key={todo.id} onClick={() => updateTodo(todo.id)} className="hover:bg-[#bdab94] cursor-pointer active:bg-[#9a8b79]"><div className="flex justify-center"><MdOutlineUpdate /></div></td>
                                 <td key={todo.id} onClick={() => deleteTodo(todo.id)} className="hover:bg-[#bdab94] cursor-pointer active:bg-[#9a8b79]"><div className="flex justify-center text-red-500"><MdDeleteOutline /></div></td>
                                 {users.map(user => {
@@ -334,6 +335,16 @@ function Room() {
     }}
 >
     <MdExitToApp />
+</Link>
+
+<Link 
+    to="/bot" 
+    className="absolute m-3 rounded-full w-20 text-[--light] bg-[--dark] h-20 bottom-24 right-5 hover:bg-[#584e41] active:bg-[#494136] flex justify-center items-center text-3xl"
+    style={{
+        boxShadow: "3px 3px 60px rgba(700, 100, 1600, 3), -3px -3px 5px rgba(155, 205, 855, 0.3)" // Pop-out effect
+    }}
+>
+    <MdComputer />
 </Link>
 
 <Link 

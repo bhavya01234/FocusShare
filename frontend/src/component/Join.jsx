@@ -140,18 +140,21 @@ console.log(response.status);
                     <div onClick={handleJoinRoom} className="font-bold px-6 py-2 text-[--light] bg-[--dark] rounded-md hover:bg-[--medium] hover:text-[--dark]">Join Room</div>
                 </div>
                 <div>
-                    <img src={left} className="scale-[0.7] absolute -bottom-16 left-1/4 -translate-x-[50%]"/>
-                    <img src={middle} className="scale-[0.7] absolute -bottom-14 left-1/2 -translate-x-[50%]"/>
-                    <img src={right} className="scale-[0.7] absolute -bottom-16 left-3/4 -translate-x-[50%]"/>
+                    <img src={left} className="scale-[0.7] absolute -bottom-7 left-1/4 -translate-x-[50%]"/>
+                    <img src={middle} className="scale-[0.8] absolute -bottom-0 left-1/2 -translate-x-[50%]"/>
+                    <img src={right} className="scale-[0.8] absolute -bottom-10 left-3/4 -translate-x-[50%]"/>
                 </div>
+                <footer className="absolute bottom-0 w-full bg-[--dark] text-[--light] text-center py-4">
+                <p className="text-sm">Terms and Conditions | Privacy Policy | © 2024 Focus Share. All rights reserved.</p>
+            </footer>
                 <Link 
             to="/" style={{
         position: "absolute",
-        margin: "3rem",
+        margin: "4rem",
          // Adjust width to fit the icon
        // Adjust height to fit the icon
         borderRadius: "45%",
-        boxShadow: "0 0 10px 5px rgba(255, 255, 255, 0.5)",// Shadow effect
+        boxShadow: "0 0 20px 10px rgba(255, 255, 255, 0.9)",// Shadow effect
         zIndex: 10, // Ensure it's above other elements
         transition: "box-shadow 0.3s, transform 0.3s", // Add transition for the glowing effect
     }}
