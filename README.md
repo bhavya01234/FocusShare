@@ -3,14 +3,15 @@ FocusShare is a collaborative online platform designed to help students study to
 
 Deployment Link - 
 
-Features
+# Features
 Room Creation/Joining: Users can create or join study rooms to collaborate with peers.
 Chatroom: Engage in real-time conversations with room members using Socket.io.
 AI Chatbot: Ask questions and get instant answers from an integrated AI chatbot.
 Shared To-Do List: Add, update, delete, and track tasks within the room. View progress as tasks are marked done/pending by different members.
 Pomodoro Timer: Utilize focus, short break, and long break timers to manage study sessions efficiently.
 User Authentication: Secure login and logout with JSON Web Tokens (JWT).
-Tech Stack
+
+# Tech Stack
 Frontend: React.js
 Backend: Node.js, Express.js
 Database: MongoDB
