@@ -1,5 +1,5 @@
-# FocuShare
-FocuShare is a collaborative online platform designed to help students study together effectively. Users can create or join rooms, chat with members, ask questions to an AI chatbot, and manage tasks with a shared to-do list. The platform also features a Pomodoro timer to enhance productivity.
+# FocusShare
+FocusShare is a collaborative online platform designed to help students study together effectively. Users can create or join rooms, chat with members, ask questions to an AI chatbot, and manage tasks with a shared to-do list. The platform also features a Pomodoro timer to enhance productivity.
 
 Deployment Link - 
 
